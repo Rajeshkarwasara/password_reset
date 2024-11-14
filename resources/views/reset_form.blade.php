@@ -15,46 +15,31 @@
                 <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
                     <div class="card border border-light-subtle rounded-4">
                         <div class="card-body p-3 p-md-4 p-xl-5">
+
+
+                        
                             <div class="row">
                                 <div class="col-12">
                                     <div class="mb-5">
-                                        <h4 class="text-center">Login Here</h4>
+                                        <h4 class="text-center">Reset Password</h4>
                                     </div>
                                 </div>
                             </div>
-                            @if(session('error'))
-                                <div class="alert alert-danger">
-                                    {{ session('error') }}
-                                </div>
-                            @endif
-
                             @if(session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <form action="{{route('Account.authenticate')}}" method="post">
+                            <form action="{{route('ProcessResetPassword')}}" method="post">
                                 @csrf
+                                <input type="hidden" name="token" id="" value="{{$token}}">
                                 <div class="row gy-3 overflow-hidden">
                                     <div class="col-12">
                                         <div class="form-floating mb-3">
-                                            <input type="email" value="{{old('email')}}"
-                                                class="form-control @error('email') is-invalid @enderror" name="email"
-                                                id="email" placeholder="name@example.com">
-                                            <label for="email" class="form-label">Email</label>
-                                            @error('email')
-                                                <p class="invalid-feedback">
-                                                    {{$message}}
-                                                </p>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating mb-3">
                                             <input type="password" value="{{old('password')}}"
-                                                class="form-control  @error('password') is-invalid @enderror"
-                                                name="password" id="password" value="" placeholder="Password">
-                                            <label for="password" class="form-label">Password</label>
+                                                class="form-control @error('password') is-invalid @enderror" name="password"
+                                                id="password" placeholder="enter a password">
+                                            <label for="password" class="form-label">New Password</label>
                                             @error('password')
                                                 <p class="invalid-feedback">
                                                     {{$message}}
@@ -62,26 +47,36 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div>
-                                        <div class="d-flex flex-column flex-md-row justify-content-start">
-                                            <a href="{{route('forgotpassword')}}"
-                                                class="link-secondary text-decoration-none">Forgot Password</a>
+
+                                    <div class="col-12">
+                                        <div class="form-floating mb-3">
+                                            <input type="password" value="{{old('confirm_password')}}"
+                                                class="form-control @error('password') is-invalid @enderror" name="confirm_password"
+                                                id="confirm_password" placeholder="enter a confirm password">
+                                            <label for="password" class="form-label">confirm password</label>
+                                            @error('confirm_password')
+                                                <p class="invalid-feedback">
+                                                    {{$message}}
+                                                </p>
+                                            @enderror
                                         </div>
                                     </div>
+
                                     <div class="col-12">
                                         <div class="d-grid">
-                                            <button class="btn bsb-btn-xl btn-primary py-3" type="submit">Log in
-                                                now</button>
+                                            <button class="btn bsb-btn-xl btn-primary py-3"
+                                                type="submit">Update Password</button>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                             <div class="row">
                                 <div class="col-12">
-                                    <hr class="mt-5 mb-4 border-secondary-subtle">
-                                    <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-center">
-                                        <a href="{{route('Account.register')}}"
-                                            class="link-secondary text-decoration-none">Create new account</a>
+
+                                    <div
+                                        class=" mt-3 d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-center">
+                                        <a href="{{route('Account.login')}}"
+                                            class="link-secondary text-decoration-none">Click here to login</a>
                                     </div>
                                 </div>
                             </div>

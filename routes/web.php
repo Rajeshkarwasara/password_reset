@@ -24,12 +24,11 @@ Route::get('login', [LoginController::class, "index"])->name('Account.login');
 Route::get('register', [LoginController::class, "register"])->name('Account.register');
 Route::post('processregister', [LoginController::class, "processregister"])->name('Account.processregister');
 Route::post('authenticate', [LoginController::class, "authenticate"])->name('Account.authenticate');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, "dashboard"])->name('Account.dashboard');
     Route::get('logout', [LoginController::class, "logout"])->name('Account.logout');
-
 });
-
 
 Route::middleware(['admin.auth'])->group(function () {
     Route::get('admin/dashboard', [AdminDashboardController::class, "admin_dashboard"])->name('admin.dashboard');
@@ -38,3 +37,11 @@ Route::middleware(['admin.auth'])->group(function () {
 Route::get('admin/login', [AdminloginController::class, "index"])->name('admin.login');
 Route::post('admin/authenticate', [AdminloginController::class, "admin_authenticate"])->name('admin.authenticate');
 
+Route::get('forgot', [LoginController::class, "forgotpassword"])->name('forgotpassword');
+Route::post('processForgotpassword', [LoginController::class, "processForgotpassword"])->name('processForgotpassword');
+Route::get('reset_password/{token}', [LoginController::class, "reset_password"])->name('reset_password');
+Route::post('ProcessResetPassword', [LoginController::class, "ProcessResetPassword"])->name('ProcessResetPassword');
+
+
+
+Route::view('trade', 'trade');
